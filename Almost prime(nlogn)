@@ -1,0 +1,31 @@
+import math
+prime = [True]*1000000
+prime[0] = False
+prime[1] = False
+for i in range(2,1000000):
+    if prime[i] == True:
+        for j in range(2*i,1001,i):
+            prime[j] = False
+    if i**2 > 1000000:
+        break
+
+def almost_prime(n,pr):
+    for i in range(len(pr)):
+        ele = pr[i]
+        if n%ele == 0:
+            if ele != n//ele and prime[n//ele] == True:
+                return True
+            else:
+                return False
+n = 40
+pr = []
+for i in range(2,n+1):
+    if prime[i]:
+        pr.append(i)
+print(pr)
+ans = 0
+for i in range(2,n+1):
+    if almost_prime(i,pr):
+        ans += 1
+print(ans)
+    
